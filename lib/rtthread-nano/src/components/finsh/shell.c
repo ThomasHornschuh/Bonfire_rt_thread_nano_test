@@ -707,7 +707,7 @@ void finsh_thread_entry(void *parameter)
             if (msh_is_used() == RT_TRUE)
             {
                 if (shell->echo_mode)
-                    rt_kprintf("\n");
+                    rt_kprintf("\n"); 
                 msh_exec(shell->line, shell->line_position);
             }
             else

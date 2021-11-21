@@ -18,6 +18,7 @@
 
 int main() {
 
+  printk("Entry point %lx\n",finsh_system_init);
   //finsh_system_init();
   printk("main.c\n");
   while (1) {
