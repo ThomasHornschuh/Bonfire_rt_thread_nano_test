@@ -1,0 +1,12 @@
+{
+    "name": "finsh",
+    "version" : "0.0.1",
+    "frameworks" : ["bonfire-sdk"],
+    "platforms" : ["Bonfire"],
+    "libArchive": false,
+    "dependencies": [{ "name" : "rthread-nano" }],
+    "build" : {
+        "flags": [ "-Isrc/risc-v/common"]
+    }
+
+}

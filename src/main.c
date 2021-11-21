@@ -1,6 +1,7 @@
 
 #include "rtthread.h"
 #include "console.h"
+#include "shell.h"
 
 // void printInfo()
 // {
@@ -17,8 +18,10 @@
 
 int main() {
 
+  //finsh_system_init();
+  printk("main.c\n");
   while (1) {
-    printk("Tick\n");
+    //printk("Tick\n");
     rt_thread_mdelay(500);
   }
 
