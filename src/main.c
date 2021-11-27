@@ -3,6 +3,9 @@
 #include "console.h"
 #include "shell.h"
 
+
+
+
 // void printInfo()
 // {
 
@@ -16,14 +19,19 @@
 // }
 
 
+
 int main() {
 
   printk("Entry point %lx\n",finsh_system_init);
   //finsh_system_init();
   printk("main.c\n");
+  void * buffer = malloc(256);
+  printk("Buffer allocated at %lx\n",buffer);
+  rt_thread_mdelay(2000);
+  free(buffer);
   while (1) {
     //printk("Tick\n");
-    rt_thread_mdelay(500);
+    rt_thread_mdelay(2000);
   }
 
 }
