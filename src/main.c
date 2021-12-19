@@ -27,6 +27,17 @@ static void sendMessage(char *msg)
 
 }
 
+static rt_timer_t timer = NULL;
+
+static void  messageTimerCallBack()
+{
+char msg[80];
+static int count=0;
+
+    snprintf(msg,sizeof(msg),"Timer message %d",count++);
+    sendMessage(msg);
+}
+
 
 static void test(int argc,char **argv)
 {
@@ -45,14 +56,25 @@ static void test(int argc,char **argv)
             free(buffer);
           }
           break;
-       case 't':
+       case 'c':
           {
             rt_thread_t t = rt_thread_self();
             printk("Current thread id %lx name: %s\n",t,t->name);
           }
           break;   
-       case 's':
+       case 's':          
           sendMessage(argc>=3?argv[2]:"default message");
+          break;
+       case 't':
+          if (!timer) {
+            timer=rt_timer_create("tim01",messageTimerCallBack,NULL,10000,RT_TIMER_FLAG_PERIODIC|RT_TIMER_FLAG_SOFT_TIMER);
+            RT_ASSERT(timer);
+            printk("Timer %lx created\n",timer);
+            rt_timer_start(timer);           
+          } else {  
+            rt_timer_delete(timer);
+            timer=NULL;
+          }            
                     
      }
   }
@@ -65,7 +87,7 @@ int main() {
 
 char * message;
 
-  printk("Entry point %lx\n",finsh_system_init);
+  printk("Pulling finsh_system_init:  %lx\n",finsh_system_init);
   mb = rt_mb_create("mb01",1,RT_IPC_FLAG_FIFO);
   RT_ASSERT(mb);
 

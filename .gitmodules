@@ -1,0 +1,3 @@
+[submodule "lib/bonfire-rthread-nano"]
+	path = lib/bonfire-rthread-nano
+	url = git@github.com:bonfireprocessor/bonfire-rthread-nano.git
