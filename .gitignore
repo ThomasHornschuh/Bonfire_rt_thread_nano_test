@@ -1,2 +1,4 @@
 .pio
 .vscode
+pio_workspace.code-workspace
+*.tar.gz
